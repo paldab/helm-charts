@@ -1,0 +1,18 @@
+apiVersion: v1
+entries:
+  commafeed:
+  - apiVersion: v2
+    appVersion: 1.0.0
+    created: "2025-09-14T21:19:57.604268667Z"
+    dependencies:
+    - name: common
+      repository: https://bjw-s-labs.github.io/helm-charts
+      version: 3.7.3
+    description: A Helm chart for Kubernetes
+    digest: 4450eb26ebd6195f96245b79d4b2b17ed9121b20e2a42cd236bb2c219f26bd4b
+    name: commafeed
+    type: application
+    urls:
+    - commafeed-1.0.0.tgz
+    version: 1.0.0
+generated: "2025-09-14T21:19:57.604277494Z"
