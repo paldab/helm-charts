@@ -26,8 +26,7 @@ syncFeedJobConfig:
     tag: latest
 
   envs:
-    # host domain
-    COMMAFEED_URL: "https://commafeed.example.com"
+    COMMAFEED_URL: "https://commafeed.example.com" # Commafeed host domain
     COMMAFEED_USER: admin
     COMMAFEED_PASS: admin
 
