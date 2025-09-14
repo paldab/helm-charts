@@ -1,0 +1,38 @@
+{{- $feedConfigSHA := .Values.feedConfig | toYaml | sha256sum }}
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: sync-feeds-job
+  namespace: commafeed
+  annotations:
+    config-checksum: "{{ $feedConfigSHA }}"
+spec:
+    schedule: "0 6 * * 0"
+    jobTemplate:
+      spec:
+        backoffLimit: 3
+        template:
+          metadata:
+            annotations:
+              config-checksum: "{{ $feedConfigSHA }}"
+          spec:
+            serviceAccountName: {{ .Values.syncFeedJobConfig.serviceAccountName }}
+            containers:
+              - name: sync-feeds
+                image: "{{ .Values.syncFeedJobConfig.image.repository }}:{{ .Values.syncFeedJobConfig.image.tag }}"
+                env: 
+                {{- range $key, $value := .Values.syncFeedJobConfig.envs }}
+                  - name: {{ $key }}
+                    value: "{{ $value }}"
+                {{- end }}
+                volumeMounts:
+                  - mountPath: /commafeed/feeds.yaml
+                    name: feeds-config
+                    subPath: feeds.yaml
+                    readOnly: true
+            restartPolicy: Never
+            volumes:
+              - name: feeds-config
+                configMap:
+                  name: feeds-config
+

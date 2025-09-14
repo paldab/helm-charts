@@ -1,0 +1,92 @@
+feedConfig:
+  # Example setup
+  commafeedSetup:
+    - category: Dev / Releases
+      feeds:
+        - name: K9s Releases
+          url: "https://github.com/derailed/k9s/releases"
+          disabled: true # Ignores this entry in commafeed
+
+    - category: Dev / Kubernetes
+      feeds:
+        - name: Kubernetes Releases
+          url: "https://github.com/kubernetes/kubernetes/releases"
+
+    - category: Self-Hosting / Apps / Software Releases
+      feeds:
+        - name: Commafeed Releases
+          url: "https://github.com/Athou/commafeed/releases"
+ 
+syncFeedJobConfig:
+  backoffLimit: 3
+  serviceAccountName: commafeed
+
+  image:
+    repository: paer12/go-commafeed-feed-sync
+    tag: latest
+
+  envs:
+    # host domain
+    COMMAFEED_URL: "https://commafeed.example.com"
+    COMMAFEED_USER: admin
+    COMMAFEED_PASS: admin
+
+common:
+  persistence:
+    data:
+      enabled: true
+      type: persistentVolumeClaim
+      accessMode: ReadWriteOnce
+      size: 500Mi
+
+  controllers:
+    main:
+      nameOverride: commafeed
+      replicas: 1
+
+      serviceAccount:
+        name: commafeed
+
+      containers:
+        commafeed:
+          image:
+            repository: athou/commafeed
+            tag: "5.11.0-h2"
+
+          resources:
+            requests:
+              cpu: 10m
+              memory: 100Mi
+
+  serviceAccount:
+    create: true
+    name: commafeed
+
+  service:
+    main:
+      nameOverride: commafeed
+      controller: main
+      ports:
+        http:
+          port: 80
+          targetPort: 8082
+
+  ingress:
+    main:
+      nameOverride: commafeed
+      className: nginx
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt
+      hosts:
+        - host: commafeed.example.com
+          paths:
+            - path: /
+              pathType: Prefix
+              service:
+                identifier: main
+                port: http
+      tls:
+        - secretName: commafeed-tls
+          hosts:
+            - commafeed.example.com
+

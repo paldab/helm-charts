@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: feeds-config
+  namespace: commafeed
+data:
+  feeds.yaml: |
+    {{- toYaml .Values.feedConfig | nindent 4 }}
+
