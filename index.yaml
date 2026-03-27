@@ -15,4 +15,19 @@ entries:
     urls:
     - commafeed-1.0.0.tgz
     version: 1.0.0
-generated: "2025-09-14T21:19:57.604277494Z"
+  home-docs:
+  - apiVersion: v2
+    appVersion: 0.1.0
+    created: "2026-03-27T18:46:20.36553632Z"
+    dependencies:
+    - name: common
+      repository: https://bjw-s-labs.github.io/helm-charts
+      version: 4.6.2
+    description: A Helm chart for Kubernetes
+    digest: 17ef05526780b7b4309865fec4b15c8220a62afe1bce015e88c7b6df27172fbf
+    name: home-docs
+    type: application
+    urls:
+    - home-docs-0.1.0.tgz
+    version: 0.1.0
+generated: "2026-03-27T18:46:20.365551107Z"
