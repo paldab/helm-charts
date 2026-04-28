@@ -15,7 +15,7 @@ common:
         docs:
           image:
             repository: paer12/home-docs
-            tag: "0.1.0"
+            tag: "0.1.1"
 
   service:
     main:
