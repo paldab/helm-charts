@@ -1,6 +1,7 @@
 # Example feedConfig setup
 feedConfig:
   commafeedSetup:
+    # Every / represents a subcategory
     - category: Dev / Releases
       feeds:
         - name: K9s Releases
