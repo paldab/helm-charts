@@ -1,0 +1,46 @@
+common:
+  serviceAccount:
+    cloudflare:
+      enabled: true
+
+  controllers:
+    main:
+      replicas: 1
+
+      serviceAccount:
+        identifier: cloudflare
+
+      containers:
+        cloudflare-tunnel:
+          image:
+            repository: cloudflare/cloudflared
+            tag: "latest"
+
+          args:
+            - "tunnel"
+            - "--no-autoupdate"
+            - "run"
+            - "--token"
+            - "$(TOKEN)"
+
+          env:
+            - name: TOKEN
+              secretKeyRef:
+                key: token
+                name: cloudflare-credentials # This secret holds the cloudflare token
+
+          resources:
+            requests:
+              cpu: 10m
+              memory: 50Mi
+
+  service:
+    main:
+      controller: main
+      ports:
+        http:
+          port: 80
+          targetPort: 8080
+        https:
+          port: 443
+          targetPort: 8080
