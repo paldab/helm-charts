@@ -37,9 +37,29 @@ common:
           image:
             repository: corentinth/it-tools
             tag: "2024.10.22-7ca5933"
+
           ports:
             - containerPort: 8080
 
+          probes:
+            readiness:
+              enabled: true
+              custom: true
+              spec:
+                httpGet:
+                  path: /
+                  port: 8080
+                initialDelaySeconds: 5
+                timeoutSeconds: 5
+
+            liveness:
+              enabled: true
+              custom: true
+              spec:
+                httpGet:
+                  path: /
+                  port: 8080
+                timeoutSeconds: 10
 
   service:
     main:
