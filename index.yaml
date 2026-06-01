@@ -74,4 +74,19 @@ entries:
     urls:
     - immich-public-proxy-0.1.0.tgz
     version: 0.1.0
-generated: "2026-05-21T07:14:05.22265102Z"
+  it-tools:
+  - apiVersion: v2
+    appVersion: 2024.10.22-7ca5933
+    created: "2026-06-01T19:19:54.854191531Z"
+    dependencies:
+    - name: common
+      repository: https://bjw-s-labs.github.io/helm-charts
+      version: 4.6.2
+    description: A Helm chart for Kubernetes
+    digest: 4ad54710d17efc661bcdf0de1ee5dfc55834dc3d0e120581c948f34b71f20a17
+    name: it-tools
+    type: application
+    urls:
+    - it-tools-1.0.0.tgz
+    version: 1.0.0
+generated: "2026-06-01T19:19:54.854201016Z"
