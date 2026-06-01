@@ -1,0 +1,66 @@
+metrics:
+  enabled: false
+
+common:
+  persistence:
+    conf:
+      enabled: true
+      name: nginx-conf
+      type: configMap
+      globalMounts:
+        - path: /etc/nginx/nginx.conf
+          subPath: nginx.conf
+          readOnly: true
+    cache:
+      type: emptyDir
+      globalMounts:
+        - path: /var/cache/nginx
+    tmp:
+      type: emptyDir
+      globalMounts:
+        - path: /tmp/nginx
+
+  serviceAccount:
+    it-tools:
+      enabled: true
+
+  controllers:
+    main:
+      replicas: 1
+      strategy: RollingUpdate
+
+      serviceAccount:
+        identifier: it-tools
+
+      containers:
+        it-tools:
+          image:
+            repository: corentinth/it-tools
+            tag: "2024.10.22-7ca5933"
+          ports:
+            - containerPort: 8080
+
+
+  service:
+    main:
+      controller: main
+      ports:
+        http:
+          port: 80
+          targetPort: 8080
+
+  ingress:
+    main:
+      className: traefik
+      hosts:
+        - host: it-tools.example.com
+          paths:
+            - path: /
+              pathType: Prefix
+              service:
+                identifier: main
+                port: http
+      tls:
+        - secretName: it-tools-tls
+          hosts:
+            - it-tools.example.com
