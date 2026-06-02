@@ -41,6 +41,11 @@ common:
           ports:
             - containerPort: 8080
 
+          resources:
+            requests:
+              cpu: 5m
+              memory: 10Mi
+
           probes:
             readiness:
               enabled: true
