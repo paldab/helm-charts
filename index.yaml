@@ -3,7 +3,7 @@ entries:
   cloudflare-tunnel:
   - apiVersion: v2
     appVersion: 1.0.0
-    created: "2026-08-20T14:19:24.162323285Z"
+    created: "2026-08-20T15:06:54.154731439Z"
     dependencies:
     - name: common
       repository: https://bjw-s-labs.github.io/helm-charts
@@ -18,7 +18,7 @@ entries:
   commafeed:
   - apiVersion: v2
     appVersion: 1.0.0
-    created: "2026-08-20T14:19:24.165430243Z"
+    created: "2026-08-20T15:06:54.158533452Z"
     dependencies:
     - name: common
       repository: https://bjw-s-labs.github.io/helm-charts
@@ -33,7 +33,7 @@ entries:
   home-docs:
   - apiVersion: v2
     appVersion: 0.1.1
-    created: "2026-08-20T14:19:24.173607533Z"
+    created: "2026-08-20T15:06:54.16575811Z"
     dependencies:
     - name: common
       repository: https://bjw-s-labs.github.io/helm-charts
@@ -47,7 +47,7 @@ entries:
     version: 0.1.1
   - apiVersion: v2
     appVersion: 0.1.0
-    created: "2026-08-20T14:19:24.169917433Z"
+    created: "2026-08-20T15:06:54.162383352Z"
     dependencies:
     - name: common
       repository: https://bjw-s-labs.github.io/helm-charts
@@ -62,7 +62,7 @@ entries:
   immich-public-proxy:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2026-08-20T14:19:24.177867486Z"
+    created: "2026-08-20T15:06:54.169615055Z"
     dependencies:
     - name: common
       repository: https://bjw-s-labs.github.io/helm-charts
@@ -77,7 +77,7 @@ entries:
   it-tools:
   - apiVersion: v2
     appVersion: 2024.10.22-7ca5933
-    created: "2026-08-20T14:19:24.182382547Z"
+    created: "2026-08-20T15:06:54.173331381Z"
     dependencies:
     - name: common
       repository: https://bjw-s-labs.github.io/helm-charts
@@ -91,8 +91,28 @@ entries:
     version: 1.0.0
   pihole-ha-operator:
   - apiVersion: v2
+    appVersion: v0.0.8
+    created: "2026-08-20T15:06:54.174807589Z"
+    description: A Helm chart to distribute pihole-ha-operator
+    digest: 0a55428bf87c24ce5d83ba3e1a2fc87bb7aa74670804ec9f88f7c3dde2ad86b9
+    home: https://github.com/paldab/pihole-ha-operator
+    icon: https://wp-cdn.pi-hole.net/wp-content/uploads/2016/12/Vortex-R.png
+    keywords:
+    - kubernetes
+    - operator
+    - pihole
+    maintainers:
+    - name: paldab
+    name: pihole-ha-operator
+    sources:
+    - https://github.com/paldab/pihole-ha-operator
+    type: application
+    urls:
+    - https://paldab.github.io/helm-charts/pihole-ha-operator-0.0.8.tgz
+    version: 0.0.8
+  - apiVersion: v2
     appVersion: test0.0.5
-    created: "2026-08-20T14:19:24.183254497Z"
+    created: "2026-08-20T15:06:54.174077631Z"
     description: A Helm chart to distribute pihole-ha-operator
     digest: 4a4126944db0458a204d7ea9f014a24c97b162fff18aead45dd63a27566575c9
     home: https://github.com/paldab/pihole-ha-operator
@@ -110,4 +130,4 @@ entries:
     urls:
     - https://paldab.github.io/helm-charts/pihole-ha-operator-0.0.5.tgz
     version: 0.0.5
-generated: "2026-08-20T14:19:24.152647467Z"
+generated: "2026-08-20T15:06:54.149994451Z"
